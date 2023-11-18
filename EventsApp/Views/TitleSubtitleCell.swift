@@ -19,6 +19,12 @@ final class TitleSubtitleCell: UITableViewCell {
         UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(tappedDone))
     }()
     
+    lazy var dateFormatter: DateFormatter = {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "dd.MM.yyy"
+        return dateFormatter
+    }()
+    
     private let photoImageView = UIImageView()
     
     private var viewModel: TitleSubtitleCellViewModel?
@@ -39,6 +45,8 @@ final class TitleSubtitleCell: UITableViewCell {
         self.viewModel = viewModel
         titleLabel.text = viewModel.title
         subtitleTextField.text = viewModel.subtitle
+        
+        
         subtitleTextField.placeholder = viewModel.placeholder
         
         subtitleTextField.inputView = viewModel.type == .text ? nil : datePickerView
@@ -50,7 +58,12 @@ final class TitleSubtitleCell: UITableViewCell {
         photoImageView.image = viewModel.image
         
         verticalStackView.spacing = viewModel.type == .image ? 15 : verticalStackView.spacing
-        
+        if viewModel.type == .date {
+            guard let dateFormatted = dateFormatter.date(from: viewModel.subtitle) else {
+                return
+            }
+            datePickerView.date = dateFormatted
+        }
     }
     
     private func setupViews() {
@@ -62,7 +75,7 @@ final class TitleSubtitleCell: UITableViewCell {
         }
         
         toolbar.setItems([doneButton], animated: false)
-        datePickerView.preferredDatePickerStyle = .wheels
+v        datePickerView.preferredDatePickerStyle = .wheels
         datePickerView.datePickerMode = .date
         photoImageView.backgroundColor = UIColor.black.withAlphaComponent(0.4)
         photoImageView.layer.cornerRadius = 10
