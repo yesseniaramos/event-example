@@ -49,6 +49,7 @@ final class EditEventViewController: UIViewController {
         // To force large titles
         tableView.contentInsetAdjustmentBehavior = .never
         tableView.setContentOffset(.init(x: 0, y: -1), animated: false)
+        tableView.separatorInset = UIEdgeInsets(top: 0, left: 15, bottom: 0, right: 15)
         // still need to scrolldown to show the large title
         //tableView.setNeedsLayout( )
     }
