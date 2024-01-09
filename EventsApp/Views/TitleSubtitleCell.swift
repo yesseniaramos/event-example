@@ -75,7 +75,7 @@ final class TitleSubtitleCell: UITableViewCell {
         }
         
         toolbar.setItems([doneButton], animated: false)
-v        datePickerView.preferredDatePickerStyle = .wheels
+        datePickerView.preferredDatePickerStyle = .wheels
         datePickerView.datePickerMode = .date
         photoImageView.backgroundColor = UIColor.black.withAlphaComponent(0.4)
         photoImageView.layer.cornerRadius = 10

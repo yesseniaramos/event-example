@@ -25,7 +25,7 @@ final class TimeRemainingStackView: UIStackView {
             $0.textColor = .white
         }
         
-        viewModel.timeRemainingParts.enumerated().forEach {
+        viewModel.timeRemainingParts.enumerated().forEach {
             timeRemainingLabels[$0.offset].text = $0.element
         }
                
